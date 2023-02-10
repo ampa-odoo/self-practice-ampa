@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <menuitem id="powerschool_menu_root" name="PowerSchool">
+        <menuitem id="powerschool_first_level_menu" name="People">
+            <menuitem id="powerschool_model_menu_action" action="powerschool_students_action"/>
+            <menuitem id="powerschool_model_menu_action_parent" action="powerschool_parents_action"/>
+        </menuitem>
+        <menuitem id="powerschool_first_level_menu_add" name="Add">
+            <menuitem id="powerschool_model_menu_action_grades" action="powerschool_student_grades_action"/>
+            <menuitem id="powerschool_model_menu_action_subjects" action="powerschool_student_subjects_action"/>
+        </menuitem>
+         
+    </menuitem>
+</odoo>

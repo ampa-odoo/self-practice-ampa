@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+powerschool.access_powerschool_student,access_powerschool_student,powerschool.model_powerschool_student,base.group_user,1,1,1,1
+powerschool.access_powerschool_parent,access_powerschool_parent,powerschool.model_powerschool_parent,base.group_user,1,1,1,1
+powerschool.access_powerschool_student_grades,access_powerschool_student_grades,powerschool.model_powerschool_student_grades,base.group_user,1,1,1,1
+powerschool.access_powerschool_student_subjects,access_powerschool_student_subjects,powerschool.model_powerschool_student_subjects,base.group_user,1,1,1,1
+powerschool.access_powerschool_student_marksheet,access_powerschool_student_marksheet,powerschool.model_powerschool_student_marksheet,base.group_user,1,1,1,1

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="powerschool_parents_action" model="ir.actions.act_window">
+        <field name="name">Parents</field>
+        <field name="res_model">powerschool.parent</field>
+        <field name="view_mode">tree,form</field>
+         <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new Parent!!!
+          </p>
+        </field>
+    </record>
+    <!--list view or tree view of the data-->
+    <record id="powerschool_parents_views_list" model="ir.ui.view">
+        <field name="name">Parents</field>
+        <field name="model">powerschool.parent</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="studentName"/>
+                <field name="parent" widget="radio"/>
+                <field name="name"/>
+                <field name="mobile"/>
+                <field name="email"/>
+                <field name="occupation" widget="radio"/>
+                <field name="AadharNo"/>
+                <field name="Income"/>
+            </tree>
+        </field>
+    </record>
+    <!--here form view starts-->
+    <record id="powerschool_parents_views_form" model="ir.ui.view">
+        <field name="name">Parents</field>
+        <field name="model">powerschool.parent</field>
+        <field name="arch" type="xml">
+          <form string="Form">
+            <sheet>
+            <group>
+                <h1><field name="name" class="oe_inline" placeholder="Enter your name"/></h1>
+            </group>
+            
+                  <notebook>
+                      <page string="Description">
+                      <group>
+                          
+                      <field name="studentName"/>
+                      <field name="parent"/>
+                      <field name="name"/>
+                      <field name="mobile"/>
+                      <field name="email"/>
+                      <field name="occupation"/>
+                      <field name="AadharNo"/>
+                      <field name="Income"/>
+                      
+                    </group>
+                      </page>
+                  </notebook>
+              
+          </sheet>
+      </form>
+      </field>
+</record>
+<!-- filter view starts here -->
+<record id="powerschool_parents_views_search" model="ir.ui.view">
+        <field name="name">Parents</field>
+        <field name="model">powerschool.parent</field>
+        <field name="arch" type="xml">
+            <search string="Tests">
+                <field name="studentName"/>
+                <field name="parent"/>
+                <field name="name"/>
+                <field name="mobile"/>
+                <field name="email"/>
+                <field name="occupation"/>
+                <field name="AadharNo"/>
+                <separator/>
+                <filter string="StudentName" name="studentName" domain="[('studentName', '=', 'Aman')]"/>
+                <group expand="1" string="Group By">
+                        <filter string="Income" name="Income" context="{'group_by':'Income'}"/>
+                </group>
+            </search>
+        </field>
+    </record> 
+</odoo>

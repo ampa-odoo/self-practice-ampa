@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    
+
+    <!-- list/tree view starts here -->
+    <record id="powerschool_student_marksheet_views_list" model="ir.ui.view">
+        <field name="name">Student Marksheet</field>
+        <field name="model">powerschool.student.marksheet</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="subject_name"/>
+                <field name="subject_grade"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- form view starts here -->
+    <record id="powerschool_student_marksheet_views_form" model="ir.ui.view">
+        <field name="name">Student Marksheet</field>
+        <field name="model">powerschool.student.marksheet</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <group>
+                    <!-- <field name="marksheet_id"/> -->
+                    <group>
+                        <field name="subject_name"/>
+                         <field name="subject_grade"/>
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
