@@ -10,5 +10,6 @@
             'views/powerschool_student_grades_views.xml',
             'views/powerschool_student_subjects_views.xml',
             'views/powerschool_student_marksheets_views.xml',
+            'views/powerschool_student_fees_views.xml',
             'views/powerschool_menus.xml']
 }

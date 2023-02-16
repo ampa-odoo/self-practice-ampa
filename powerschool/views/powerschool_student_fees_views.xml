@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    
+
+    <!-- list/tree view starts here -->
+    <record id="powerschool_student_fees_views_list" model="ir.ui.view">
+        <field name="name">Student Fees</field>
+        <field name="model">powerschool.student.fees</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="fees_serial_number" string="Reciept No"/>
+                <field name="amount"/>
+                <field name="date"/>
+                <button name="verified_fees"  type="object" icon="fa-check"/>
+                <button name="notverified_fees"  type="object" icon="fa-times"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- form view starts here -->
+    <record id="powerschool_student_fees_views_form" model="ir.ui.view">
+        <field name="name">Student Fees</field>
+        <field name="model">powerschool.student.fees</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <group>
+                    <!-- <field name="marksheet_id"/> -->
+                    <group>
+                        <field name="fees_serial_number" string="Reciept No"/>
+                        <field name="amount"/>
+                        <field name="date"/>
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -55,18 +55,26 @@
                   <group>
                       <field name="mobile"/>
                       <field name="email"/>
+                      <field name="Aadharno"/>
+                      <field name="total_fees"/>
+                      
+
                   </group>
                   <group>
                       <field name="birthdate"/>
+                      <field name="age"/>
                       <field name="standard"/>
+                      <field name="remaining_fees"/>
+                      <!-- <field name="totalfees_paid_tillnow"/> -->
                       
                   </group>
+                  
                   <notebook>
 
                     <page string="Personal Details">
                         <group>
                             
-                            <field name="Aadharno"/>
+                            
                             <field name="gender" widget="radio"/>
                             <!-- <field name="course_id"/>  -->
                             <field name="height"/>
@@ -90,8 +98,8 @@
                             <field name="parents" class="oe_inline"/>     
                       </page>
                       <page string="Fees">
-                        <label for="fees" string="Amount of fees paid:"/>
-                        <field name="fees" class="oe_inline"/>
+                        <!-- <label for="fees" string="Amount of fees paid:"/> -->
+                        <field name="fees_ids" class="oe_inline"/>
                       </page>
                       <page string="Referal">
                         <group>
@@ -100,6 +108,7 @@
                         </group>
                       </page>
                   </notebook>
+                  
               </group>
           </sheet>
       </form>

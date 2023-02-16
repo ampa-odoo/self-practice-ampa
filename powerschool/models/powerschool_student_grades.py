@@ -7,3 +7,4 @@ class PowerschoolStudentGrades(models.Model):
     _description = "Student Result Grades portal"
 
     name = fields.Char()
+    priority = fields.Char()
