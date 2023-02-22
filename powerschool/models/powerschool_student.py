@@ -7,8 +7,9 @@ class PowerschoolStudent(models.Model):
     _name = "powerschool.student"
     _description = "Student Management portal"
 
-     
+
     name = fields.Char(required=True,string="Name")
+    id = fields.Char(readonly=False)
     gender = fields.Selection(
         string = "Gender",
         selection = [('male','Male'),('female','Female')],
@@ -43,9 +44,10 @@ class PowerschoolStudent(models.Model):
     # totalfees = fields.Integer()
     state = fields.Selection(selection=[
         ('counselling','Counselling'),
-        ('admission confirmed','Admission Confirmed'),
+        ('fees remaining','Fees Remaining'),
         ('fees paid','Fees Paid'),
-        ]
+        ],
+        compute="_compute_state"
         )
     image = fields.Binary()
     marksheet_ids = fields.One2many("powerschool.student.marksheet","student_id")
@@ -77,16 +79,14 @@ class PowerschoolStudent(models.Model):
     totalfees_paid_tillnow = fields.Integer(compute="_compute_total_fees_paid")
     @api.depends('totalfees_paid_tillnow')
     def _compute_total_fees_paid(self):
-         for student in self:
-             PowerschoolStudentFees = self.env['powerschool.student.fees'].search([('student_id', '=', student.id)])
-             if PowerschoolStudentFees:
-                 student.totalfees_paid_tillnow = sum(PowerschoolStudentFees.mapped('amount'))
-             
-              
+        for student in self:
+            PowerschoolStudentFees = self.env['powerschool.student.fees'].search([('student_id', '=', student.id)])
+            if PowerschoolStudentFees:
+                student.totalfees_paid_tillnow = sum(PowerschoolStudentFees.mapped('amount'))
 
 # to compute remaining fees based on fees paid
 
-    remaining_fees = fields.Integer(compute="_compute_remaining_fees")
+    remaining_fees = fields.Integer(compute="_compute_remaining_fees",inverse="_inverse_fees")
     @api.depends('totalfees_paid_tillnow')
     def _compute_remaining_fees(self):
         for record in self:
@@ -94,7 +94,16 @@ class PowerschoolStudent(models.Model):
                 record.remaining_fees = record.total_fees-record.totalfees_paid_tillnow
             else:
                 record.remaining_fees = record.total_fees
-    
+
+    def _inverse_fees(self):
+        for record in self:
+            record.totalfees_paid_tillnow = record.total_fees - record.remaining_fees
 
 
-
+    @api.depends('state')
+    def _compute_state(self):
+        for record in self:
+            if(record.remaining_fees == 0):
+                record.state = "fees paid"
+            else:
+                record.state = "fees remaining"
