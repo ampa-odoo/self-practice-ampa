@@ -17,21 +17,17 @@
         <field name="name">Students</field>
         <field name="model">powerschool.student</field>
         <field name="arch" type="xml">
-            <tree string="Channel">
+            <tree string="Channel" decoration-danger="state=='fees remaining'" decoration-success="state=='fees paid'">
                 <field name="name"/>
                 <field name="mobile"/>
                 <field name="email"/>
-                <field name="Aadharno"/>
-                <field name="gender"/>
-                <field name="birthdate"/>
+                <field name="parent_ids"/>
                 <field name="standard" optional="show"/>
-                <field name="height"/>
-                <field name="weight"/>
-                <field name="tshirtSize"/>
                 <field name="admissionDate"/>
                 <field name="feesDueDate"/>
                 <field name="Disabled" optional="hide"/>
                 <field name="referal_to" optional="hide"/>
+                <field name="state" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -47,6 +43,19 @@
             <sheet>
             <widget name="web_ribbon" title="Fees Paid" bg_color="bg-success" states = "fees paid"/>
             <widget name="web_ribbon" title="Fees Remaining" bg_color="bg-danger" states = "fees remaining"/>
+            <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="action" name="%(powerschool_students_books_action)d">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="books_count"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Books
+                                    </span>
+                                </div>
+                            </button>
+            </div>
+            
             <field name="image" widget="image" class="oe_avatar"/>
             <label for="name" string="Student Name:"/>
             
@@ -83,7 +92,7 @@
                             <field name="tshirtSize"/>
                             <field name="admissionDate"/>
                             <field name="Disabled"/>
-                            <field name="parents" class="oe_inline"/>
+                            <field name="parent_ids" string="Parent"/>
                         </group>
                         </group>
                     </page>
@@ -142,6 +151,7 @@
         <field name="model">powerschool.student</field>
         <field name="arch" type="xml">
             <search string="Tests">
+                <field name="parent_ids"/>
                 <field name="name"/>
                 <field name="mobile"/>
                 <field name="email"/>

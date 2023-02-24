@@ -17,8 +17,6 @@
         <field name="model">powerschool.parent</field>
         <field name="arch" type="xml">
             <tree string="Channel">
-                <field name="studentName"/>
-                <field name="parent" widget="radio"/>
                 <field name="name"/>
                 <field name="mobile"/>
                 <field name="email"/>
@@ -33,32 +31,27 @@
         <field name="name">Parents</field>
         <field name="model">powerschool.parent</field>
         <field name="arch" type="xml">
-          <form string="Form">
+        <form string="Form">
             <sheet>
             <group>
                 <h1><field name="name" class="oe_inline" placeholder="Enter your name"/></h1>
             </group>
             
-                  <notebook>
-                      <page string="Description">
-                      <group>
-                          
-                      <field name="studentName"/>
-                      <field name="parent"/>
-                      <field name="name"/>
-                      <field name="mobile"/>
-                      <field name="email"/>
-                      <field name="occupation"/>
-                      <field name="AadharNo"/>
-                      <field name="Income"/>
-                      
+                <notebook>
+                    <page string="Description">
+                    <group>
+                    <field name="name"/>
+                    <field name="mobile"/>
+                    <field name="email"/>
+                    <field name="occupation"/>
+                    <field name="AadharNo"/>
+                    <field name="Income"/>
                     </group>
-                      </page>
-                  </notebook>
-              
-          </sheet>
-      </form>
-      </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+        </field>
 </record>
 <!-- filter view starts here -->
 <record id="powerschool_parents_views_search" model="ir.ui.view">
@@ -66,15 +59,13 @@
         <field name="model">powerschool.parent</field>
         <field name="arch" type="xml">
             <search string="Tests">
-                <field name="studentName"/>
-                <field name="parent"/>
                 <field name="name"/>
                 <field name="mobile"/>
                 <field name="email"/>
                 <field name="occupation"/>
                 <field name="AadharNo"/>
                 <separator/>
-                <filter string="StudentName" name="studentName" domain="[('studentName', '=', 'Aman')]"/>
+                <!-- <filter string="StudentName" name="studentName" domain="[('studentName', '=', 'Aman')]"/> -->
                 <group expand="1" string="Group By">
                         <filter string="Income" name="Income" context="{'group_by':'Income'}"/>
                 </group>

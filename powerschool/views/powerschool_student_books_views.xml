@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="powerschool_students_books_action" model="ir.actions.act_window">
+        <field name="name">Student Books</field>
+        <field name="res_model">powerschool.student.books</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('student_id','=',active_id)]</field>
+        <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+            Add a new issued book!!!
+        </p>
+        </field>
+    </record>
+<!-- Tree/List view starts here -->
+    <record id="powerschool_student_books_view_list" model="ir.ui.view">
+        <field name="name">Student Books</field>
+        <field name="model">powerschool.student.books</field>
+        <field name="arch" type="xml">
+            <tree string="Types" editable="bottom">
+                <field name="book_serial_number"/>
+                <field name="book_name"/>
+                <field name="issue_date"/>
+                <field name="return_date"/>
+                <field name="actual_return_date"/>
+                <field name="fine"/>
+            </tree>
+        </field>
+    </record>
+<!-- Form view starts here -->
+    <record id="powerschool_student_books_view_form" model="ir.ui.view">
+        <field name="name">Student Books</field>
+        <field name="model">powerschool.student.books</field>
+        <field name="arch" type="xml">
+            <form string="Form">
+                <sheet>
+                    <group>
+                    <field name="book_serial_number"/>
+                    <field name="book_name"/>
+                    <field name="issue_date"/>
+                    <field name="return_date"/>
+                    <field name="actual_return_date"/>
+                    <field name="fine"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

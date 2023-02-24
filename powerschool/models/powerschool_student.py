@@ -7,7 +7,6 @@ class PowerschoolStudent(models.Model):
     _name = "powerschool.student"
     _description = "Student Management portal"
 
-
     name = fields.Char(required=True,string="Name")
     id = fields.Char(readonly=False)
     gender = fields.Selection(
@@ -40,7 +39,7 @@ class PowerschoolStudent(models.Model):
     admissionDate = fields.Date(default=fields.Datetime.today(),required=True)
     feesDueDate = fields.Date(default=lambda self: fields.Datetime.now()+relativedelta(months=3),copy=False,string="Fee Installment(Due date)")
     Disabled = fields.Boolean()
-    parents = fields.Selection(string="Parents",selection=[('a','A'),('b','B')])
+    parent_ids = fields.Many2one("powerschool.parent")
     # totalfees = fields.Integer()
     state = fields.Selection(selection=[
         ('counselling','Counselling'),
@@ -52,7 +51,16 @@ class PowerschoolStudent(models.Model):
     image = fields.Binary()
     marksheet_ids = fields.One2many("powerschool.student.marksheet","student_id")
     fees_ids = fields.One2many("powerschool.student.fees","student_id")
-    #course_id = fields.Many2one('student.course', string='Course')
+    book_ids = fields.One2many("powerschool.student.books","student_id")
+    books_count = fields.Integer(compute="_compute_books_issued")
+    # for calculating books issued by each student
+    @api.depends("book_ids")
+    def _compute_books_issued(self):
+        for record in self:
+            if record.book_ids:
+                record.books_count = len(record.book_ids)
+            else:
+                record.books_count = 0
 
     # now to calculate the age on the basis of DOB
     age = fields.Integer(string='Age', compute='_compute_age', inverse='_inverse_age')
@@ -90,10 +98,10 @@ class PowerschoolStudent(models.Model):
     @api.depends('totalfees_paid_tillnow')
     def _compute_remaining_fees(self):
         for record in self:
-            if (record.total_fees!=0):
+            if (record.total_fees > 1):
                 record.remaining_fees = record.total_fees-record.totalfees_paid_tillnow
             else:
-                record.remaining_fees = record.total_fees
+                record.remaining_fees = 2000
 
     def _inverse_fees(self):
         for record in self:

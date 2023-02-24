@@ -5,6 +5,7 @@
     'application': True,
     'license' : 'LGPL-3',
     'data':['security/ir.model.access.csv',
+            'views/powerschool_student_books_views.xml',
             'views/powerschool_student_views.xml',
             'views/powerschool_parent_views.xml',
             'views/powerschool_student_grades_views.xml',

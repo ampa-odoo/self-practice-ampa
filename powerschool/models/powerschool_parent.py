@@ -4,14 +4,12 @@ class PowerschoolParent(models.Model):
     _name = "powerschool.parent"
     _description = "Parents Details portal"
 
-    studentName = fields.Char()
-    # note here we need to add the selection field to select the already added students
-    parent = fields.Selection(
-        string = "parent",
-        selection = [('father','Father'),('mother','Mother'),('other guardian','Other Guardian')],
-        default="mother",
-        required=True
-    )
+    # parent = fields.Selection(
+    #     string = "parent",
+    #     selection = [('father','Father'),('mother','Mother'),('other guardian','Other Guardian')],
+    #     default="mother",
+    #     required=True
+    # )
     name = fields.Char()
     mobile = fields.Char(required=True)
     email = fields.Char(required=True)
