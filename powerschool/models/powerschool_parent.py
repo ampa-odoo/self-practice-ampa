@@ -10,8 +10,8 @@ class PowerschoolParent(models.Model):
     #     default="mother",
     #     required=True
     # )
-    name = fields.Char()
-    mobile = fields.Char(required=True)
+    name_id = fields.Many2one("res.partner")
+    mobile = fields.Char(related="name_id.phone",readonly=True)
     email = fields.Char(required=True)
     occupation = fields.Selection(
         string = "Occupation",

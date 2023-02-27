@@ -7,7 +7,7 @@ class PowerschoolStudent(models.Model):
     _name = "powerschool.student"
     _description = "Student Management portal"
 
-    name = fields.Char(required=True,string="Name")
+    name_id = fields.Many2one("res.users")
     id = fields.Char(readonly=False)
     gender = fields.Selection(
         string = "Gender",

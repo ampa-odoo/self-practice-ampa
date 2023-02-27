@@ -18,7 +18,7 @@
         <field name="model">powerschool.student</field>
         <field name="arch" type="xml">
             <tree string="Channel" decoration-danger="state=='fees remaining'" decoration-success="state=='fees paid'">
-                <field name="name"/>
+                <field name="name_id"/>
                 <field name="mobile"/>
                 <field name="email"/>
                 <field name="parent_ids"/>
@@ -44,7 +44,7 @@
             <widget name="web_ribbon" title="Fees Paid" bg_color="bg-success" states = "fees paid"/>
             <widget name="web_ribbon" title="Fees Remaining" bg_color="bg-danger" states = "fees remaining"/>
             <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" type="action" name="%(powerschool_students_books_action)d">
+                            <button class="oe_stat_button" type="action" name="%(powerschool_students_books_action)d" icon="fa-book">
                                 <div class="o_stat_info">
                                     <span class="o_stat_value">
                                         <field name="books_count"/>
@@ -57,9 +57,9 @@
             </div>
             
             <field name="image" widget="image" class="oe_avatar"/>
-            <label for="name" string="Student Name:"/>
+            <label for="name_id" string="Student Name:"/>
             
-            <h1><field name="name" class="oe_inline" placeholder="Enter your name"/></h1>
+            <h1><field name="name_id" class="oe_inline" placeholder="Enter your name"/></h1>
             <group>
 
                 <group>
@@ -131,7 +131,7 @@
                             <div class="oe_kanban_details">
                                 <strong class="o_kanban_record_title">
                                     <label for="standard">Name: </label>
-                                        <field name="name"/>
+                                        <field name="name_id"/>
                                 </strong>
                                 <div><label for="standard">Address:</label><strong>  <field name="address"/></strong></div>
                                 <div><label for="standard">Standard:</label><strong>  <field name="standard"/></strong></div>
@@ -152,7 +152,7 @@
         <field name="arch" type="xml">
             <search string="Tests">
                 <field name="parent_ids"/>
-                <field name="name"/>
+                <field name="name_id"/>
                 <field name="mobile"/>
                 <field name="email"/>
                 <field name="birthdate"/>
