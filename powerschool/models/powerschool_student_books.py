@@ -40,11 +40,11 @@ class PowerschoolStudentBooks(models.Model):
                 else:
                     record.fine = 0
 
-    # # for calculating books issued by each student
-    # @api.depends("book_serial_number")
-    # def _compute_books_issued(self):
-    #     for record in self:
-    #         if record.book_serial_number:
-    #             record.books_count = len(record.book_serial_number)
-    #         else:
-    #             record.books_count = 0
+    # for calculating books issued by each student
+    @api.depends("book_serial_number")
+    def _compute_books_issued(self):
+        for record in self:
+            if record.book_serial_number:
+                record.books_count = len(record.book_serial_number)
+            else:
+                record.books_count = 0
